@@ -18,9 +18,9 @@ import torch
 import torchvision
 import yaml
 
-from utils.google_utils import gsutil_getsize
-from utils.metrics import fitness
-from utils.torch_utils import init_torch_seeds
+from yolov7.utils.google_utils import gsutil_getsize
+from yolov7.utils.metrics import fitness
+from yolov7.utils.torch_utils import init_torch_seeds
 
 # Settings
 torch.set_printoptions(linewidth=320, precision=5, profile='long')
@@ -326,8 +326,8 @@ def scale_coords(img1_shape, coords, img0_shape, ratio_pad=None):
         gain = ratio_pad[0][0]
         pad = ratio_pad[1]
 
-    coords[:, [0, 2]] -= pad[0]  # x padding
-    coords[:, [1, 3]] -= pad[1]  # y padding
+    coords[:, [0, 2]] = coords[:, [0, 2]] - pad[0]  # x padding
+    coords[:, [1, 3]] = coords[:, [1, 3]] - pad[1]  # y padding
     coords[:, :4] /= gain
     clip_coords(coords, img0_shape)
     return coords

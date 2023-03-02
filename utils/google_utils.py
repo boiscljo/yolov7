@@ -21,8 +21,10 @@ def attempt_download(file, repo='WongKinYiu/yolov7'):
     file = Path(str(file).strip().replace("'", '').lower())
 
     if not file.exists():
+        pass
         try:
-            response = requests.get(f'https://api.github.com/repos/{repo}/releases/latest').json()  # github api
+            response = requests.get(f'https://api.github.com/repos/WongKinYiu/yolov7/releases').json()[-1]  # github api
+            print(response)
             assets = [x['name'] for x in response['assets']]  # release assets
             tag = response['tag_name']  # i.e. 'v1.0'
         except:  # fallback plan
