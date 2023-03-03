@@ -724,7 +724,7 @@ class Model(nn.Module):
         return self
 
     def autoshape(self):  # add autoShape module
-        print('Adding autoShape... ')
+        #print('Adding autoShape... ')
         m = autoShape(self)  # wrap model
         copy_attr(m, self, include=('yaml', 'nc', 'hyp', 'names', 'stride'), exclude=())  # copy attributes
         return m
